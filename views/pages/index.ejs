@@ -1,0 +1,73 @@
+<% layout('layouts/blogs')%>
+<div class="main">
+    <div class="grid grid__row">
+      <div class="container">
+
+         <% for(let i=0;i<blogs.length;i++) {%>
+           
+               <ul class="post-list">
+                  <li class="post-item-title"><a class="post-link-title" href="/home/<%= blogs[i]._id %>"><%= blogs[i].title %></a></li>
+                  <li class="post-item-des"><a class="post-link-des" href="/home/<%= blogs[i]._id %>">Chào mừng các bạn trở lại với blog đầy bụi của mình. Github gần đây mới cho ra mắt một tính năng dùng để hiển thị file README ở trên cùng của trang cá nhân. Với chức năng này, các bạn sẽ được tự do quyết định các 
+                     thông tin hiểhị troang trang cán t …</a></li>
+                  <li class="post-item-btn"><a class="post-link-btn" href="/home/<%= blogs[i]._id %>">đọc tiếp</a></li>
+                  <li class="post-item-note">
+                      <ul class="note-list">
+                      <li class="item-node item-author"><a href="/home/<%= blogs[i]._id %>"><i class="far fa-user" style="padding-right: 5px;"></i>IT nghèo</a></li>
+                      <li class="item-node item-theme"><a href="/home/<%= blogs[i]._id %>"><i class="far fa-folder"  style="padding-right: 5px;"></i>chuyện coding</a></li>
+                      <li class="item-node item-comment"><a href="/home/<%= blogs[i]._id %>"><i class="fas fa-comments" style="padding-right: 5px;"></i>1 bình luận</a></li>
+                      <li class="item-node item-time"><a href="/home/<%= blogs[i]._id %>"><i class="fas fa-clock"> <%= updatedAts[i]%></i></a></li>
+                  </ul>
+                 </li>
+              </ul>
+           <% }%>
+     
+     <% if(idPage) {%>
+      <p class="older-post"><a href="/home/page/<%= idPage%>">bài cũ hơn</a></p>
+   <%}%>
+      
+     
+        </div>
+      <div class="sidebar">
+           <aside id="group-fb">
+          
+            <div id="fb-root"></div>
+            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0&appId=367942391625870&autoLogAppEvents=1"
+            nonce="iv0OOf4n"></script>
+            <div class="fb-page" 
+            data-href="https://www.facebook.com/profile.php?id=100072299271073"
+            data-width="380"
+            data-hide-cover="false"
+            data-show-facepile="false"></div>
+           </aside>
+           <div class="send-email">
+              <form action="/send/flow" method="POST">
+                 <input type="text" name="email" id="" placeholder="nhập email của bạn">
+                 <button>theo dõi blog</button>
+              </form>
+           </div>
+           <aside class="many-viewers">
+              <h2 class="title-many-viewers">nhiều người xem</h2>
+              <ul class="list-many-viewers">
+                 <% for(let i = 0; i<7;i++){%>
+                 <li class="item-many-viewers"><a href="/home/<%= views[i]._id %>" class="link-many-viewers"><%= views[i].title %></a></li>
+                <%}%>
+              </ul>
+           </aside>
+           <aside class="theme">
+            <h2 class="title-theme">chủ đề</h2>
+            <ul class="list-theme">
+               <% for(let topic of topics){%>
+               <li class="item-theme">
+                  <a href="/home/post/<%= topic._id%>" class="link-theme" style="padding-bottom: 15px;"><%= topic.title %></a>
+                  <ul class="list-item-theme">
+                     <% for(let blog of topic.blogs){%>
+                     <li class="item-item-theme"><a href="/home/<%= blog._id%>" class="link-item-theme"><%= blog.title %></a></li>
+                     <%}%>
+                  </ul>
+               </li>
+               <%}%>
+            </ul>
+         </aside>
+      </div>
+    </div>
+</div>

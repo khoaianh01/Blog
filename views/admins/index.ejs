@@ -1,0 +1,18 @@
+<% layout('layouts/adminblog')%>
+
+<div>
+    <ul class="list-theme">
+        <% for(let topic of topics){%>
+       <li class="item-theme">
+          <a href="/home/post/<%= topic._id%>" class="link-theme" style="padding-bottom: 15px;"><%= topic.title %></a> <a href="/admin/edittopic/<%= topic._id%>" class="link-theme" style="color:rgb(179, 255, 0)">edit</a>
+          <form action="/admin/deletepost/<%= topic._id %>?_method=DELETE" method="POST"><button>delete</button></form>
+          <ul class="list-item-theme">
+             <% for(let blog of topic.blogs){%>
+             <li class="item-item-theme"><a href="/home/<%= blog._id%>" class="link-item-theme"><%= blog.title %></a> <a href="/admin/editpost/<%= topic._id %>/post/<%= blog._id %>" style="color:rgb(179, 255, 0)">edit</a> </li>
+             <form action="/admin/deletepost/<%= topic._id %>/post/<%= blog._id %>?_method=DELETE" method="POST"><button>delete</button></form>
+             <%}%>
+          </ul>
+       </li>
+       <%}%>
+    </ul>
+</div>

@@ -1,0 +1,57 @@
+<% layout('layouts/user')%>
+
+    <div class="form">
+        <div class="form-login">
+            <div class="logo">
+                <img src="/img/core.png" alt="">
+            </div>
+            <h2 class="form-title">Đăng ký Core</h2>
+            <form action="/admin/register" method="POST">
+            <div class="form-group">
+               <div class="form-group__email form-group-item">
+                <div class="el-input-group__icon"><i class="fas fa-user"></i></div>
+               <input class="form-control" type="email" id="email" name="email" placeholder="nhập emai">
+               </div>
+            
+                <!-- <div class="valid-feedback">
+                    Looks good!
+                </div> -->
+            </div>
+          <div class="form-group">
+          <div class="form-group__password form-group-item">
+                  <div class="el-input-group__icon"><i class="fas fa-lock"></i></div>
+                  <input class="form-control" type="password" id="password" name="password"  placeholder="nhập password">     
+          </div>
+        
+
+                <!-- <div class="valid-feedback display">
+                    mật khẩu không khớp
+                </div> -->
+          </div>
+           <button class="form-group-button" type="submit">Đăng ký</button>
+        </form>
+       
+        <div class="dang-nhap-bang">
+           
+             <span class="mx-3">Đăng nhập với</span>
+             
+        </div> 
+        <div class="social-login">
+             <ul class="list-unstyled">
+                 <button type="button" class="el-button el-button-fb">
+                    <i class="fab fa-facebook"></i>
+                     <span>Facebook</span>
+                 </button>
+                 <button type="button" class=" el-button el-button-google">
+                    <i class="fab fa-google"></i>
+                     <span>Google</span>
+                 </button>
+                 <button type="button" class="el-button el-button-github">
+                    <i class="fab fa-github"></i>
+                     <span>Github</span>
+                 </button>
+             </ul>
+        </div>
+        </div>
+          
+    </div>

@@ -1,0 +1,62 @@
+<% layout('layouts/user')%>
+
+    <div class="form">
+        <div class="form-login">
+            <div class="logo">
+                <img src="/img/core.png" alt="">
+            </div>
+            <h2 class="form-title">Đăng nhập vào Core</h2>
+            <form action="/admin/login" method="POST">
+            <div class="form-group">
+               <div class="form-group__email form-group-item">
+                <div class="el-input-group__icon"><i class="fas fa-user"></i></div>
+               <input class="form-control" type="email" id="email" name="email" placeholder="nhập emai" >
+               </div>
+            
+                <!-- <div class="valid-feedback">
+                    Looks good!
+                </div> -->
+            </div>
+          <div class="form-group">
+          <div class="form-group__password form-group-item">
+                  <div class="el-input-group__icon"><i class="fas fa-lock"></i></div>
+                  <input class="form-control" type="text" id="password" name="password" placeholder="nhập password">     
+          </div>
+            <!-- <div class="valid-feedback">
+                Looks good!
+            </div> -->
+          </div>
+           <button class="form-group-button" type="submit">Đăng nhập</button>
+        </form>
+        <div class="bottom-login">
+            <a href="" class="bottom-login-item">Quên mật khẩu</a>
+            <a href="">Tạo tài khoản</a>
+        </div> 
+        <div class="dang-nhap-bang">
+           
+             <span class="mx-3">Đăng nhập bằng</span>
+             
+        </div> 
+        <div class="social-login">
+             <ul class="list-unstyled">
+                 <button type="button" class="el-button el-button-fb">
+                     <a href="/admin/auth/fb"> <i class="fab fa-facebook"></i>
+                        <span>Facebook</span></a>
+                   
+                 </button>
+                 <button type="button" class=" el-button el-button-google">
+                     <a href="/admin/auth/google">
+                        <i class="fab fa-google"></i>
+                        <span>Google</span></a>
+                    
+                 </button>
+                 <button type="button" class="el-button el-button-github">
+                    <i class="fab fa-github"></i>
+                     <span>Github</span>
+                 </button>
+             </ul>
+        </div>
+        </div>
+          
+    </div>
+

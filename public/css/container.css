@@ -1,0 +1,147 @@
+.container .entry-header{
+    font-size: 4rem;
+    font-weight: 400;
+    margin-bottom:30px;
+    line-height:60px;
+}
+.container .entry-meta {
+    margin: 1.4375em 0 3.5em;
+}
+.container .entry-meta span {
+    padding-right: 25px;
+}
+.container .entry-meta span a:hover{
+   color:#1267bc;
+}
+.container .entry-meta a{
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    
+    color: #b3b3b1;
+    font-family: 'Roboto',sans-serif;
+}
+
+
+.container p{
+    margin-bottom: 10px;
+    line-height:30px;
+    font-size: 2rem;
+    /* font-weight: normal; */
+  
+}
+/* chuyên muc (post) */
+.container .chuyen-muc{
+    font-size:5rem;
+    margin-bottom:20px;
+    font-weight: 400;
+}
+.container .entry-content{
+    margin-bottom: 50px;
+}
+.container .entry-content h2{
+    font-size:3rem;
+    padding:10px 0;
+}
+.container .entry-content h3{
+    font-size:2.5rem;
+    padding:10px 0;
+}
+.container .entry-content ul{
+    padding-left: 30px;
+    margin-bottom: 10px;
+    
+}
+.container .entry-content ul li {
+    line-height:30px;
+    font-size: 2rem;
+    margin-bottom: 10px;
+    font-weight: normal;
+    list-style: block;
+}
+/* bài viết liên quan */
+/* 2 bài viết */
+.jp-post-flair {
+    margin-bottom: 40px;
+}
+.jp-post-flair .sharedaddy{
+    font-size:2.6rem;
+    font-weight:500;
+    margin-bottom:30px
+}
+.jp-post-flair .jp-relatedposts-items{
+   display: flex;
+   justify-content:space-between ;
+   flex-wrap: wrap;
+   /* filter: brightness(90%); */
+}
+.jp-post-flair .jp-relatedposts-items .img-responsive{
+    max-width: 100%;
+  height: auto;
+}
+.jp-post-flair .jp-relatedposts-items img{
+    filter: brightness(98%);
+}
+.jp-post-flair .jp-relatedposts-items img:hover{
+    filter: brightness(100%);
+}
+.jp-post-flair .jp-relatedposts-items .jp-relatedposts-post-title{
+    line-height:30px;
+    font-size: 1.8rem;
+   
+    padding: 15px 0px;
+}
+.jp-post-flair .jp-relatedposts-items .jp-relatedposts-post-title a:hover{
+    color:#3385c4;
+}
+.jp-post-flair .jp-relatedposts-items .jp-relatedposts-post-title a{
+    color: #1b10b5;
+
+}
+.jp-post-flair .jp-relatedposts-items .jp-relatedposts-post-date{
+    font-size: 1.6rem;
+    font-weight: 300;
+}
+.jp-post-flair .jp-relatedposts-items .jp-relatedposts-post-des{
+    font-size: 1.6rem;
+    font-weight: 300;
+}
+/* tags */
+.entry-footer .post-tags li{
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 2rem
+}
+.entry-footer .post-tags li a{
+  color: #ccc;
+  padding-right: 5px;
+  font-size: 2rem;
+} 
+.entry-footer .post-tags li a:hover{
+    color: #3385c4
+}
+.main .container #post-id{
+    margin-bottom: 200px;
+}
+.main .container #comment h2{
+    font-size:1.8rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+.main .container #comment .form-comment{
+    margin-bottom:20px;
+}
+.main .container #comment .form-comment label{
+    font-size:1.6rem;
+    font-weight: 500;
+  
+}
+
+.main .container #comment .comment{
+    width: 720px;
+    height:150px
+}
+.main .container #comment .username{
+    width: 500px;
+    height:50px;
+}

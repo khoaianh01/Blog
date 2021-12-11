@@ -1,0 +1,38 @@
+<% layout('layouts/adminblog')%>
+
+<h1>add blog</h1>
+    <form  action="/admin/blog" method="POST" enctype="multipart/form-data">
+        <input type="text" name="title" placeholder="tiêu đề bài viết" style="width:400px;height:100px">
+        <br/>
+        <textarea name="des" id="" rows="10" cols="80"></textarea><br>
+        <textarea name="content" id="content" rows="10" cols="80"></textarea> <br/>
+  
+        <input type="file" name='avata' id="avata"><br>
+        <select name ="topic[title]">   
+            <option value="">chọn chủ đề</option>   
+            <% for(let topic of topics) {%>             
+            <option value ="<%= topic.title%>"> <%= topic.title %> </option>    
+        <%}%>
+        </select>
+        <input type="submit" name="" id="">
+
+    </form>
+    <textarea name="content" id="content" rows="10" cols="80" class="content"></textarea> <br/>
+    <script type ="text/javascript">
+   
+        CKEDITOR.replace('content', {  
+        extraPlugins:'filebrowser',
+        filebrowserBrowseUrl:'/list',
+        filebrowserUploadMethod:'form',
+        filebrowserUploadUrl:'/admin/upload',
+        customConfig: '/ckeditor_settings/config.js'
+    });
+        CKEDITOR.replace( 'des' );
+       
+       config = {};
+       config.entities_latin = false;
+       config.language = 'vi';
+       var textarea = document.body.appendChild( document.createElement( 'textarea' ) );
+    CKEDITOR.replace( textarea );
+    </script>
+  

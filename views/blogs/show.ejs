@@ -1,0 +1,123 @@
+<% layout('layouts/blogs')%>
+<div  class="main">
+    <div class="grid grid__row">
+      <div class="container">
+        
+        <article id="post-list">
+           <header class="entry-header">
+             <h1 class="entry-title"><%= post.title %></h1>
+           </header>
+           <div class="entry-meta">
+               <span class="author"><a href=""><i class="far fa-user" style="padding-right: 5px;"></i>IT nghèo</a></span>
+               <span class="cat-link"><a href=""><i class="far fa-folder"  style="padding-right: 5px;"></i>chuyện coding</a></span>
+               <span class="comments"><a href=""><i class="fas fa-comments" style="padding-right: 5px;"></i>1 bình luận</a></span>
+               <span class="published-on"><a href=""><i class="fas fa-clock"> <%= updatedAts%></i></a></li>
+           </ul>
+           </div>
+            <div class="entry-content">
+               <%- post.content %>
+            </div>
+            <!-- bài viết liên quan  -->
+           <div class="jp-post-flair">
+                <div class="sharedaddy">
+                <h3>bài viết liên quan</h3>
+                </div>
+                <div class="jp-relatedposts">
+                   <div class="jp-relatedposts-items">
+                      
+                     <% for(let i=0; i<3 ;i++) {%>
+                        <div class="jp-relatedposts-post" data-post-id="post-id">
+                             <a href="/home/<%=relatedPosts[i]._id%>" title="title-post">
+                             <img src="<%= relatedPosts[i].avata[0].thumbnail %>" alt="" class="img-responsive">
+                             </a>
+                             <h4 class="jp-relatedposts-post-title">
+                                <a href="/home/<%=relatedPosts[i]._id%>" class="jp-relatedposts-post-a"><%= blogs[i].title %></a>
+                             </h4>
+                             
+                             <time class="jp-relatedposts-post-date" datetime=""><%= blogs[i].time %></time>
+                             <p class="jp-relatedposts-post-des">trong '<%= topics[i].title %>'</p>
+                        </div>
+                        <% }%>
+                   </div>
+
+                </div>
+           </div>
+           <div class="entry-footer">
+              <ul class="post-tags light-text">
+               <li >thẻ:  <% for(let topic of topics){%>
+                 
+                  <a href="/home/post/<%= topic._id %>"><%= topic.title %>,</a>
+                  
+                  <%}%>
+               </li>
+              </ul>
+           </div>
+        </article>
+         <div id="comment">
+            <h2 class="comements-title">Để lại một câu trả lời</h2>
+            <form action="/send/comment/<%=post._id%> " method="POST">
+               <div class="form-comment">
+                  <label for="comment" >Bình luận</label></br>
+                  <input type="text" name="comment"  class="comment"></br>
+               </div>
+               <div class="form-comment">
+                  <label for="username">Tên</label></br>
+                  <input type="text" name="username" class="username" placeholder="nhập tên của bạn"></br>
+               </div>
+             <div class="form-comment">
+               <label for="email">Email</label></br>
+               <input type="text" name="email" placeholder="nhập địa chỉ email" class="username">
+             </div>
+            <button>gửi</button>
+            </form>
+         </div>
+
+         
+     
+      </div>
+      <div class="sidebar">
+           <aside id="group-fb">
+          
+            <div id="fb-root"></div>
+            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0&appId=367942391625870&autoLogAppEvents=1"
+            nonce="iv0OOf4n"></script>
+            <div class="fb-page" 
+            data-href="https://www.facebook.com/profile.php?id=100072299271073"
+            data-width="380" 
+            data-hide-cover="false"
+            data-show-facepile="false"></div>
+           </aside>
+           <div class="send-email">
+            <form action="/send/flow" method="POST">
+               <input type="text" name="email" id="" placeholder="nhập email của bạn" class="email">
+               <button>theo dõi blog</button>
+            </form>
+         </div>
+           <aside class="many-viewers">
+              <h2 class="title-many-viewers">nhiều người xem</h2>
+              <ul class="list-many-viewers">
+               <% for(let i = 0; i<7;i++){%>
+                  <li class="item-many-viewers"><a href="/home/<%= views[i]._id %>" class="link-many-viewers"><%= views[i].title %></a></li>
+                 <%}%>              </ul>
+           </aside>
+           <aside class="theme">
+            <h2 class="title-theme">chủ đề</h2>
+ 
+            <ul class="list-theme">
+               <% for(let topic of topics){%>
+               <li class="item-theme">
+                  <a href="/home/post/<%= topic._id%>" class="link-theme" style="padding-bottom: 15px;"><%= topic.title %></a>
+                  <ul class="list-item-theme">
+                     <% for(let blog of topic.blogs){%>
+                     <li class="item-item-theme"><a href="/home/<%= blog._id%>" class="link-item-theme"><%= blog.title %></a></li>
+                     <%}%>
+                  </ul>
+               </li>
+               <%}%>
+            </ul>
+            
+         </aside>
+      </div>
+    </div>
+</div>
+    

@@ -1,0 +1,44 @@
+#header {
+    padding-top: 30px;
+    margin: 0  25%;;
+    width: 551px;
+}
+#header .avata{
+  
+    border-radius:50%;
+    -moz-border-radius:50%;
+    -webkit-border-radius:50%;
+    height: 150px;
+    padding-bottom: 20px;
+
+    
+}
+.header-avata{
+    text-align: center;
+}
+#header .title{
+    font-size: 3rem;
+    padding-bottom: 10px;
+    text-align: center;
+}
+#header .des{
+    font-size: 2.5rem;
+    padding-bottom: 10px;
+    line-height: 35px;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+}
+/* #header .des .des-1{
+    font-size: 1.5rem;
+    text-align: center;
+} */
+.header-icon{
+    text-align: center;
+}
+#header .fab{
+  font-size: 2.5rem;
+  padding-right: 20px;
+  /* margin: 0 8%; */
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}

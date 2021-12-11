@@ -1,0 +1,53 @@
+<% layout('layouts/adminblog')%>
+<h1>add blog</h1>
+    
+
+
+<form action="/admin/editpost/<%=topicid%>/post/<%=blog._id%>" method="POST" enctype="multipart/form-data">
+    <input type="text" name="title" placeholder="tiêu đề bài viết" style="width:400px;height:100px" value="<%= blog.title %>">
+    <br/>
+    <textarea name="des" id="des" rows="10" cols="80"><%= blog.des %></textarea><br>
+    <textarea name="content" id="content" rows="10" cols="80" class="content" ><%= blog.content %>
+    </textarea> <br/>
+    <input type="file" name='avata' id="avata"  multiple><br>
+    <img src="<%= blog.avata.url %>" alt="">
+   <select name ="topic[title]">   
+        <option value="<%= blog.blogTopic %>"><%= blog.blogTopic %></option>   
+        <% for(let topic of topics) {%>  
+            <% if(topic.title !== blog.blogTopic){%>
+        <option value ="<%= topic.title%>"> <%= topic.title %> </option>  
+        <%}%>  
+    <%}%>
+    </select>
+    <input type="submit" name="" id="">
+     
+</form>
+
+<!-- <form  action="/admin/editpost/<%=blog._id%>" method="POST" >
+    <input type="text" name="title" placeholder="tiêu đề bài viết" style="width:400px;height:100px">
+    <br/>
+    <textarea name="des" id="" rows="10" cols="80"></textarea><br>
+    <textarea name="content" id="content" rows="10" cols="80" class="content">
+    </textarea><br/>
+    <input type="file" name='avata' id="avata"><br>
+  
+  
+    <select name ="topic[title]">   
+        <option value="">chọn chủ đề</option>   
+        <% for(let topic of topics) {%>             
+        <option value ="<%= topic.title%>"> <%= topic.title %> </option>    
+    <%}%>
+    </select>
+     
+    <input type="submit" name="" id="">
+     
+</form> -->
+
+<script>  
+    CKEDITOR.replace('content');
+    CKEDITOR.replace('des');
+   config = {};
+   config.entities_latin = false;
+   config.language = 'vi';
+</script>
+

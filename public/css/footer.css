@@ -1,0 +1,35 @@
+.footer{
+    height: 300px;
+    padding:0 2.75em;
+}
+
+
+.footer .lien-he{
+    margin-right: 70%;
+}
+.footer .width h1{
+    font-size:2.5rem;
+    font-weight: 400;
+    padding-bottom: 10px;
+}
+.footer .width ul li{
+  
+    line-height: 40px;
+    padding:3px 0;
+}
+.footer .width ul li a{
+    font-size: 1.5rem;
+    color: blue;
+}
+.footer .lien-he i{
+    font-size: 4rem;
+    padding-right: 10px;
+    color: #ccc
+}
+.footer .lien-he i:hover{
+    color:blue;
+}
+
+.footer .flow a:hover{
+    text-decoration: underline;
+ }

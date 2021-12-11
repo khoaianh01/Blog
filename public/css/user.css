@@ -1,0 +1,113 @@
+
+body{
+    background-color:rgba(0,0,0,0.4);
+}
+.form {
+    margin: 5% 35%;
+    padding: 2% 0;
+    width: 540px;
+    /* height: 480px; */
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    bottom: 0;
+    right: 0;
+   background-color: white;
+   
+}
+
+.form-login{
+    margin: 0px 9%;
+        width: 100%;
+        padding-left: 0;
+}
+.form .form-login .logo{
+    padding:0 31%;
+    margin-bottom: 20px;
+}
+.form .form-login .form-title{
+    font-weight: 300;
+    padding: 0 23.5%;
+}
+.form .form-login .form-group{
+width: 100%;
+}
+.form .form-login .form-group .form-group-item {
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 30px;
+}
+.form .form-login .form-group .form-group-item .el-input-group__icon{
+   font-size: 1.6rem;
+   color: #A6ABB3;
+   border: 1px solid #ccc;
+   background-color: #F5F7FA;
+   width: 50px;
+   border-top-left-radius: 3px;
+   border-bottom-left-radius: 3px;
+   
+}
+.form .form-login .form-group .form-group-item .el-input-group__icon .fas{
+    margin: 19% 38%;
+    font-size: 1rem;
+}
+.form .form-login .form-group .form-group-item input{
+    width: 70%;
+ 
+    border: 1px solid #ccc;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+.form .form-login .form-group .form-group-item input:hover{
+    border: 1px solid rgb(106, 106, 236)
+}
+.form .form-login .form-group-button{
+    width: 81%;
+    height: 35px;
+    background-color:#66B1FF;
+    border-radius: 3px;
+  color: white;
+    font-size: 1rem;
+    font-weight: 400;
+}
+/* dưới nút đăng nhập */
+.form .form-login .bottom-login{
+    display:flex;
+    margin: 7px 0;
+}
+.form .form-login .bottom-login a{
+    color:rgb(54, 54, 190);
+    text-decoration: none;
+    font-weight: 400;
+}
+.form .form-login a:hover{
+    text-decoration: underline;
+}
+.form .form-login .bottom-login-item{
+    padding-right:  46%;
+}
+
+/* đăng nhập bằng */
+
+.form .form-login .dang-nhap-bang {
+  font-weight: 400;
+  padding: 0 31%;
+  margin-top: 15px;
+  
+}
+/* dang nhap bang fb-gle-git */
+.form .form-login .social-login ul{
+  padding-left: 0;
+}
+.form .form-login .social-login .list-unstyled .el-button{
+  width: 81%;
+  background-color: white;
+  height: 30px;
+  margin-bottom: 10px;
+}
+.form .form-login .social-login .list-unstyled .el-button:hover{
+   background-color: #66B1FF;
+}
+.form-login .display{
+    display:none;
+}
