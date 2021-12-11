@@ -6,7 +6,11 @@
         <br/>
         <textarea name="des" id="" rows="10" cols="80"></textarea><br>
         <textarea name="content" id="content" rows="10" cols="80"></textarea> <br/>
-  
+        <%if(fileUrls){%>
+            <% for(let i=0;i<fileUrls.length;i++){ %>
+             <input type="text" name='avata1' id="avata" value="<%= fileUrls[0].url%>"><br>
+         <%}%>
+         <%}%>
         <input type="file" name='avata' id="avata"><br>
         <select name ="topic[title]">   
             <option value="">chọn chủ đề</option>   

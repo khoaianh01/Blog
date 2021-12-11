@@ -155,6 +155,24 @@ app.post('/list',parser.array('avata1'),async (req,res)=>{
     res.render('admins/addpost',{topics,fileUrls})
 
 })
+app.post('/admin/upload',multipartMiddleware,(req,res) =>{
+    try {
+       
+         
+                 
+        let fileName = req.files.upload.name;
+        let url = '/images/'+fileName;                    
+        let msg = 'Upload successfully';
+        let funcNum = req.query.CKEditorFuncNum;
+        console.log(req.files);
+       
+        res.status(201).send("<script>window.parent.CKEDITOR.tools.callFunction('"+funcNum+"','"+url+"','"+msg+"');</script>");
+    }
+
+catch (error) {
+console.log(error.message);
+}
+})
 app.use('/home',homeRoutes);
 app.use('/home',pageBlogs);
 app.use('/admin',userRoutes);
