@@ -150,7 +150,7 @@ app.use((err, req, res, next) => {
     }
     res.status(statusCode).render('error', {err});
 })
-const port = '3001';
+const port = process.env.PORT || '3001';
 app.listen(port,(req,res)=>{
     console.log(`da ket noi ${port}`)
 })
