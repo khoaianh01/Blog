@@ -5,10 +5,14 @@ const { storage } = require('../cloudinary');
 const multer = require('multer');
 const parser = multer({ storage: storage });
 const {isAdmin,isLoggedIn} = require('../middleware');
+
+const multipart = require('connect-multiparty');
+const multipartMiddleware = multipart();
 router.route('/blog')
       .get(adminBlogs.renderAddPost)
-      .post( parser.single('avata') ,adminBlogs.postAddPost);
-
+      .post(parser.single('avata') ,adminBlogs.postAddPost);
+router.route('/upload')
+      .post(multipartMiddleware,adminBlogs.uploadImgContent)
 router.route('/topic')
       .get(adminBlogs.renderTopic)
       .post(adminBlogs.postTopic);

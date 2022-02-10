@@ -12,5 +12,5 @@ router.route('/register')
 router.route('/auth/google')
       .get(passport.authenticate('google',{ scope: 'email' }));
 router.route('/auth/google/callback')
-      .get(passport.authenticate('google', { failureRedirect: '/login' }),users.postLogin)
+      .get(passport.authenticate('google', { failureRedirect: 'admin/login' }),users.postLogin)
 module.exports = router;

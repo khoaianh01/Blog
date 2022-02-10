@@ -7,7 +7,7 @@ const AvataSchema = new Schema({
     filename: String
 });
 AvataSchema.virtual('thumbnail').get(function () {
-    return this.url.replace('/upload', '/upload/w_210');
+    return this.url.replace('/upload', '/upload/w_210/h_120');
 });
 
 const blogSchema = new Schema({

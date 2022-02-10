@@ -3,7 +3,7 @@
     <div class="grid grid__row">
       <div class="container">
 
-         <% for(let i=0;i<blogs.length;i++) {%>
+         <% for(let i=0;i<=blogs.length-1;i++) {%>
            
                <ul class="post-list">
                   <li class="post-item-title"><a class="post-link-title" href="/home/<%= blogs[i]._id %>"><%= blogs[i].title %></a></li>
@@ -21,9 +21,9 @@
               </ul>
            <% }%>
      
-   <% if(idPage){%>
-      <p class="older-post"><a href="/home/page/<%= idPage%>">bài cũ hơn</a></p>
-      <%}%>
+  <%if(idPage<=countPage){%>
+      <p class="older-post"><a href="/home/?page=<%=idPage%>&next=<%= next%>">bài cũ hơn</a></p>
+<%}%>
       
      
         </div>

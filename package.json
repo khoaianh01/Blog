@@ -6,7 +6,7 @@
     "node": "16.13.1"
   },
   "scripts": {
-    "start": "node blog.js",
+    "start": "nodemon blog.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

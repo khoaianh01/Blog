@@ -25,7 +25,6 @@ const session = require('express-session');
 const nodemailer =  require('nodemailer');
 
 
-const pageBlogs = require('./routes/page_blogs.js');
 const homeRoutes = require('./routes/blogs.js');
 const Blog = require('./models/blogs.js');
 const Topic = require('./models/topics.js');
@@ -33,6 +32,7 @@ const User = require('./models/users');
 const userRoutes = require('./routes/users.js');
 const adminRoutes = require('./routes/admin_blogs.js');
 const sendMail = require('./routes/sendMail.js');
+const authGoogle = require('./routes/auth_google');
 const ExpressError = require('./utils/ExpressError');
 
 
@@ -44,7 +44,7 @@ var MongoDBStore = require('connect-mongodb-session')(session);
 
 const clientID = process.env.CLIENT_ID ;
 const clientSecret =  process.env.CLIENT_SECRET;
-const callbackURL =  process.env.callbackURL;
+const callbackURL =  process.env.callbackURL || 'http://localhost:3000/admin/auth/google/callback';
 
 const dbUrl =  process.env.DB_URL;
 const secret = process.env.SECRET;
@@ -100,28 +100,23 @@ passport.use(new GoogleStrategy(
 },
 function (token, refreshToken, profile, done) {
     process.nextTick(function () {
-
         // // tìm trong db xem có user nào đã sử dụng google id này chưa
         User.findOne({'googleId': profile.id}, function (err, user) {
             if (err)
                 return done(err);
-
-            if (user) {
-               
+            if (user) {               
                 // if a user is found, log them in
                 return done(null, user);
             } else {
                 // if the user isnt in our database, create a new user
-                var newUser = new User();
-
-                // set all of the relevant information
-          
+                var newUser = new User();        
                 newUser.email = profile.emails[0].value; // pull the first email
-                console.log(newUser);
-                // save the user
                 newUser.save(function (err) {
-                    if (err)
+                    if (err){
+                        
                         throw err;
+                    }
+                   
                     return done(null, newUser);
                 });
             }
@@ -137,59 +132,25 @@ app.use((req, res, next) => {
 
 
 
-app.get('/auth/google',
-  passport.authenticate('google',{ scope: 'email' }),(req, res)=>{
-      console.log('loi')
-  });
-  app.get('/auth/google/callback', 
-  passport.authenticate('google', { failureRedirect: '/login' }));
-
-
-
-app.get('/list',(req,res)=>{
-    res.render('admins/addimage');
-})
-app.post('/list',parser.array('avata1'),async (req,res)=>{
-    const fileUrls = req.files.map((f)=>({url:f.filename}));
-    const topics = await Topic.find({});
-    res.render('admins/addpost',{topics,fileUrls})
-
-})
-app.post('/admin/upload',multipartMiddleware,(req,res) =>{
-    try {
-       
-         
-                 
-        let fileName = req.files.upload.name;
-        let url = '/images/'+fileName;                    
-        let msg = 'Upload successfully';
-        let funcNum = req.query.CKEditorFuncNum;
-        console.log(req.files);
-       
-        res.status(201).send("<script>window.parent.CKEDITOR.tools.callFunction('"+funcNum+"','"+url+"','"+msg+"');</script>");
-    }
-
-catch (error) {
-console.log(error.message);
-}
-})
 app.use('/home',homeRoutes);
-app.use('/home',pageBlogs);
+// app.use('/home',pageBlogs);
 app.use('/admin',userRoutes);
 app.use('/admin',adminRoutes);
 app.use('/send',sendMail);
+app.use('/auth',authGoogle);
 
 app.all('*', (req,res,next) => {
     next(new ExpressError(404,'Page Not Found'));
 })
 app.use((err, req, res, next) => {
+   
     const { statusCode = 500 } = err;
     if (!err.message) {
         err.message = 'Oh No, Something Went Wrong!';
     }
     res.status(statusCode).render('error', {err});
 })
-const port = process.env.PORT ||'3000';
+const port = '3001';
 app.listen(port,(req,res)=>{
     console.log(`da ket noi ${port}`)
 })

@@ -3,7 +3,7 @@
     <div class="grid grid__row">
       <div class="container">
          <h2 class="chuyen-muc">chuyên mục :<%= posts.title %></h2>
-         <% for(let i=0;i<posts.blogs.length;i++) { %>
+         <% for(let i=0; i<= posts.blogs.length-1;i++) { %>
          <ul class="post-list">
              <li class="post-item-title"><a class="post-link-title" href="/home/<%= posts.blogs[i]._id %>"><%= posts.blogs[i].title %></a></li>
              <li class="post-item-des"><a class="post-link-des" href="/home/<%= posts.blogs[i]._id %>">Chào mừng các bạn trở lại với blog đầy bụi của mình. Github gần đây mới cho ra mắt một tính năng dùng để hiển thị file README ở trên cùng của trang cá nhân. Với chức năng này, các bạn sẽ được tự do quyết định các 
@@ -19,8 +19,8 @@
             </li>
          </ul>
      <%}%>
-     <% if(idPage){%>
-        <p class="older-post"><a href="/home/post/<%= posts._id %>/page/<%=idPage%>">bài cũ hơn</a></p>
+     <%if(idPage1<=countPage){%>
+        <p class="older-post"><a href="/home/post/<%= posts._id %>?page=<%=idPage1%>&next1=<%=next1%>">bài cũ hơn</a></p>
         <%}%>
       </div>
       <div class="sidebar">

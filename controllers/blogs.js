@@ -3,10 +3,32 @@ const Topic = require('../models/topics');
 const moment = require('moment');
 const sendMails = require('../sendMail');
 module.exports.renderBlog = async (req,res) =>{
-    let idPage = 2;
+  
     const PAGE_SIZE =6;
-    const blogs = await Blog.find({})
+    let next = req.query.next;
+    let idPage = req.query.page||0;
+    let  countBlog= await Blog.find({}).count();
+    let countPage = Math.floor((countBlog-1)/PAGE_SIZE);
+    console.log(countPage);
+    if(!next){
+        var blogs = await Blog.find({})
+        .sort({_id :-1})
         .limit(PAGE_SIZE);
+    }
+    else{
+        var blogs = await Blog.find({_id :{$lt: next}})
+        .sort({_id :-1})
+      
+        .limit(PAGE_SIZE);
+
+    }
+ 
+        next = blogs[blogs.length - 1]._id;
+        idPage++;
+
+
+ 
+      
     let updatedAts=[];
      blogs.forEach( (t) =>{
      updatedAts.push(moment(t.updatedAt).format("MM-DD-yyyy")) 
@@ -16,9 +38,11 @@ module.exports.renderBlog = async (req,res) =>{
             view:-1
         }
     }])
-    const topics = await Topic.find({}).populate('blogs');
+    const topics = await Topic.find({}).populate({
+         path:'blogs',
+        });
  
-    res.render('blogs/index',{blogs,topics,views,updatedAts,idPage});
+    res.render('blogs/index',{blogs,topics,views,updatedAts,next,idPage,countPage});
 }
 
 module.exports.renderShow = async (req,res) =>{
@@ -42,14 +66,40 @@ module.exports.renderShow = async (req,res) =>{
         let vt = Math.floor(Math.random()*qtyBlog)
        
         relatedPosts.push(blogs[vt])
+        console.log(relatedPosts[i].avata[0])
     }
-    res.render('blogs/show',{post,blogs,topics,views,updatedAts,relatedPosts});
+   const next = null;
+    res.render('blogs/show',{post,blogs,topics,views,updatedAts,relatedPosts,next});
 }
 module.exports.renderPostTopic = async (req,res) =>{
-    const idPage = 2;
+    let next1 = req.query.next1;
+    let idPage1 = req.query.page||0;
+    const PAGE_SIZE = 6;
     const {id} = req.params;
     const topics = await Topic.find({}).populate('blogs');
-    const posts = await Topic.findById(id).populate('blogs');
+    let countBlogsTopic =  await Topic.findById(id).populate('blogs');
+    let countPage = Math.floor((countBlogsTopic.blogs.length-1)/PAGE_SIZE);
+   console.log(countPage)
+    let posts;
+    if(!next1){
+       posts = await Topic.findById(id).populate({
+            path:'blogs',
+            options: {sort:{_id:-1},limit:PAGE_SIZE}
+        });
+    }
+    
+    else{
+       posts = await Topic.findById(id).populate({
+            path:'blogs',
+            match:{_id:{$lt:next1}},
+            options: {sort:{_id:-1},limit:PAGE_SIZE}
+        });
+  
+    }
+    
+    next1 = posts.blogs[posts.blogs.length - 1]._id;
+    console.log(next1);
+      idPage1++;
    let updatedAts =[];
    posts.blogs.forEach((t)=>{
     updatedAts.push(moment(t.updatedAt).format("MM-DD-yyyy"))
@@ -59,7 +109,7 @@ module.exports.renderPostTopic = async (req,res) =>{
             view:-1
         }
     }])
-    res.render('blogs/post',{topics,posts,views,idPage,updatedAts});
+    res.render('blogs/post',{topics,posts,views,updatedAts,next1,idPage1,countPage});
 }
 
 module.exports.editPost = async (req, res) => {

@@ -2,11 +2,12 @@ const express = require('express');
 const router = express.Router();
 const homes = require('../controllers/blogs');
 const {isLoggedIn} = require('../middleware');
+const catchAsync = require('../utils/catchAsync');
 router.route('/')
-     .get(homes.renderBlog);
+     .get(catchAsync(homes.renderBlog));
 router.route('/:id')  
-      .get(homes.renderShow);
+      .get(catchAsync(homes.renderShow));
 router.route('/post/:id')  
-      .get(homes.renderPostTopic);
+      .get(catchAsync(homes.renderPostTopic));
 
 module.exports = router;

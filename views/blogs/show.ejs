@@ -31,11 +31,11 @@
                              <img src="<%= relatedPosts[i].avata[0].thumbnail %>" alt="" class="img-responsive">
                              </a>
                              <h4 class="jp-relatedposts-post-title">
-                                <a href="/home/<%=relatedPosts[i]._id%>" class="jp-relatedposts-post-a"><%= blogs[i].title %></a>
+                                <a href="/home/<%=relatedPosts[i]._id%>" class="jp-relatedposts-post-a"><%=  relatedPosts[i].title %></a>
                              </h4>
                              
-                             <time class="jp-relatedposts-post-date" datetime=""><%= blogs[i].time %></time>
-                             <p class="jp-relatedposts-post-des">trong '<%= topics[i].title %>'</p>
+                             <time class="jp-relatedposts-post-date" datetime=""><%=  relatedPosts[i].time %></time>
+                             <p class="jp-relatedposts-post-des">trong '<%=  relatedPosts[i].blogTopic %>'</p>
                         </div>
                         <% }%>
                    </div>
@@ -55,7 +55,7 @@
         </article>
          <div id="comment">
             <h2 class="comements-title">Để lại một câu trả lời</h2>
-            <form action="/send/comment/<%=post._id%> " method="POST">
+            <form action="/send/comment/<%=post._id%>" method="POST">
                <div class="form-comment">
                   <label for="comment" >Bình luận</label></br>
                   <input type="text" name="comment"  class="comment"></br>

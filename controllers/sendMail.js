@@ -7,7 +7,7 @@ const emailAdmin = process.env.EMAIL_ADMIN;
 module.exports.sendMailComment = (req,res,next) => {
    
     const id =req.params.id;
-    console.log(req.params)
+ 
     const comment = req.body.comment;
     const username = req.body.username;
     const fromEmail = req.body.email;
