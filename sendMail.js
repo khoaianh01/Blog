@@ -14,10 +14,10 @@ const emailAdmin = process.env.EMAIL_ADMIN;
 // const redirect_Uri = 'https://developers.google.com/oauthplayground';
 // const emailAdmin = process.env.EMAIL_ADMIN;
 
-const OAuth2client = new google.auth.OAuth2(clientID,clientSecret,redirect_Uri);
+const OAuth2client = new google.auth.OAuth2(clientId,clientSecret,redirect_Uri);
 OAuth2client.setCredentials({ refresh_token: refresh_token});
 
-module.exports.sendMail = async function (username,fromEmail,text,toEmail,contentHtml){
+let sendMail = async function (username,fromEmail,text,toEmail,contentHtml){
 
     
     var mainOptions = { 

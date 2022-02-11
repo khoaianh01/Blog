@@ -148,6 +148,9 @@ app.use((err, req, res, next) => {
     if (!err.message) {
         err.message = 'Oh No, Something Went Wrong!';
     }
+    else {
+        err.message = 'trang chủ đang có vấn đề bạn hãy đọc bài viết khác';
+    }
     res.status(statusCode).render('error', {err});
 })
 const port = process.env.PORT || '3001';

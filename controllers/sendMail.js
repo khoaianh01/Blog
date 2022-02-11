@@ -5,7 +5,7 @@ const { Cookie } = require('express-session');
 require('dotenv').config();
 const emailAdmin = process.env.EMAIL_ADMIN;
 
-module.exports.sendMailComment = (req,res,next) => {
+module.exports.sendMailComment =async (req,res,next) => {
    
     const id =req.params.id;
  
@@ -14,9 +14,9 @@ module.exports.sendMailComment = (req,res,next) => {
     const fromEmail =req.body.email;
     const toEmail = emailAdmin;
     const contentHtml = '<p>' + comment +'</b><ul><li>Username:' + username + '</li><li>Email:' + fromEmail +'</p>';
-    const isSend = sendMails.sendMail(username,fromEmail,comment,toEmail,contentHtml);
+    const isSend = await sendMails.sendMail(username,fromEmail,comment,toEmail,contentHtml);
     if(isSend==='fail'){
-        console.log(toEmail);
+    
         next(new ExpressError(500,"gửi email thất bại,bạn vul lòng gửi lại"));
     }
  
