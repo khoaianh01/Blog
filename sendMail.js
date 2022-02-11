@@ -17,7 +17,7 @@ const emailAdmin = process.env.EMAIL_ADMIN;
 const OAuth2client = new google.auth.OAuth2(clientId,clientSecret,redirect_Uri);
 OAuth2client.setCredentials({ refresh_token: refresh_token});
 
-let sendMail = async function (username,fromEmail,text,toEmail,contentHtml){
+module.exports.sendMail = async function (username,fromEmail,text,toEmail,contentHtml){
 
     
     var mainOptions = { 
@@ -27,7 +27,7 @@ let sendMail = async function (username,fromEmail,text,toEmail,contentHtml){
        text:text,
         html:contentHtml
     }
-    console.log(mainOptions);
+  
         try
         {  
            
@@ -55,7 +55,7 @@ let sendMail = async function (username,fromEmail,text,toEmail,contentHtml){
             });
            
        let info = await transporter.sendMail(mainOptions);
-console.log(info);
+
         }
         catch(err){
             console.log(err);
