@@ -17,7 +17,7 @@ const emailAdmin = process.env.EMAIL_ADMIN;
 const OAuth2client = new google.auth.OAuth2(clientID,clientSecret,redirect_Uri);
 OAuth2client.setCredentials({ refresh_token: refresh_token});
 
-let sendMail = async function (username,fromEmail,text,toEmail,contentHtml){
+module.exports.sendMail = async function (username,fromEmail,text,toEmail,contentHtml){
 
     
     var mainOptions = { 
