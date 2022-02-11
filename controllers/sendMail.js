@@ -2,6 +2,7 @@ const ExpressError = require('../utils/ExpressError');
 const sendMails = require('../sendMail');
 const User = require('../models/users');
 const { Cookie } = require('express-session');
+require('dotenv').config();
 const emailAdmin = process.env.EMAIL_ADMIN;
 
 module.exports.sendMailComment = (req,res,next) => {
@@ -10,13 +11,15 @@ module.exports.sendMailComment = (req,res,next) => {
  
     const comment = req.body.comment;
     const username = req.body.username;
-    const fromEmail = req.body.email;
+    const fromEmail =req.body.email;
     const toEmail = emailAdmin;
     const contentHtml = '<p>' + comment +'</b><ul><li>Username:' + username + '</li><li>Email:' + fromEmail +'</p>';
     const isSend = sendMails.sendMail(username,fromEmail,comment,toEmail,contentHtml);
     if(isSend==='fail'){
+        console.log(toEmail);
         next(new ExpressError(500,"gửi email thất bại,bạn vul lòng gửi lại"));
     }
+ 
     res.redirect(`/home/${id}`)
 }
 
