@@ -2,7 +2,7 @@ const nodemailer =  require('nodemailer');
 const {google} = require('googleapis');
 require('dotenv').config();
 
-const clientID = process.env.CLIENT_ID;
+const clientId = process.env.CLIENT_ID;
 const clientSecret= process.env.CLIENT_SECRET;
 const refresh_token= process.env.REFRESH_TOKEN;
 const redirect_Uri = process.env.REDIRECT_URL;
@@ -27,7 +27,7 @@ module.exports.sendMail = async function (username,fromEmail,text,toEmail,conten
        text:text,
         html:contentHtml
     }
-  
+    console.log(mainOptions);
         try
         {  
            
@@ -39,7 +39,7 @@ module.exports.sendMail = async function (username,fromEmail,text,toEmail,conten
                 auth: {
                     type:'OAuth2',
                     user: emailAdmin,
-                    clientID,
+                    clientId,
                     clientSecret: clientSecret,
                     refreshToken: refresh_token,
                     accessToken: accessToken
@@ -55,10 +55,10 @@ module.exports.sendMail = async function (username,fromEmail,text,toEmail,conten
             });
            
        let info = await transporter.sendMail(mainOptions);
-
+console.log(info);
         }
         catch(err){
-            console.log(err)
+            console.log(err);
            return 'fail';
         }
    
