@@ -46,6 +46,9 @@
 .container .entry-content p{
     width: 100%;
 }
+.container .entry-content pre{
+    width: 100%;
+}
 .container .entry-content h2{
     font-size:3rem;
     padding:10px 0;

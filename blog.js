@@ -126,7 +126,8 @@ function (token, refreshToken, profile, done) {
 }));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-app.use((req, res, next) => {  
+app.use((req, res, next) => { 
+    console.log(req) 
     next();
 })
 
