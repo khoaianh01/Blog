@@ -88,7 +88,7 @@ module.exports.postEditPost = async (req,res)=>{
   match:{_id:"61b80d82de28e930b85c7089"}
 });
     console.log(topicId1);
-     res.redirect('/home');
+     res.redirect('/admin/edit');
 }
 module.exports.deletePost = async (req,res)=>{
     const {topicid,postid} = req.params;
@@ -97,7 +97,7 @@ module.exports.deletePost = async (req,res)=>{
     })
     await Topic.findByIdAndUpdate(topicid, { $pull: { blogs: postid } });
     await Blog.findByIdAndDelete(postid);
-    res.redirect('/home');
+    res.redirect('/admin/edit');
 }
 module.exports.renderEditTopic = async (req, res)=>{
     const {id} = req.params;

@@ -13,16 +13,16 @@ router.route('/blog')
       .post(parser.single('avata') ,adminBlogs.postAddPost);
 router.route('/upload')
       .post(multipartMiddleware,adminBlogs.uploadImgContent)
-router.route('/topic')
+router.route('/addtopic')
       .get(adminBlogs.renderTopic)
       .post(adminBlogs.postTopic);
 router.route('/edit')
       .get(adminBlogs.renderIndex);
-router.route('/editpost/:topicid/post/:postid')
+router.route('/edit/editpost/:topicid/post/:postid')
       .get(adminBlogs.renderEditPost)
       .post(parser.single('avata'),adminBlogs.postEditPost);
-router.delete('/deletepost/:topicid/post/:postid',adminBlogs.deletePost);
-router.route('/edittopic/:id')
+router.delete('/edit/deletepost/:topicid/post/:postid',adminBlogs.deletePost);
+router.route('/edit/edittopic/:id')
       .get(adminBlogs.renderEditTopic)
       .post(adminBlogs.editTopic);
 module.exports = router;
