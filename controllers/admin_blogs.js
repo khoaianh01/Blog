@@ -37,7 +37,7 @@ module.exports.postAddPost = async (req,res)=>{
      
        toEmails.push(user.email);
    })
-   console.log(users)
+   
    let fromEmail = emailAdmin;
    let text = `CoreIt có viết mới :localhost:3001/home/`;
    let contentHtml = '<p>' + `${text}` + '</p>';
@@ -95,7 +95,7 @@ module.exports.postEditPost = async (req,res)=>{
 module.exports.deletePost = async (req,res)=>{
     const {topicid,postid} = req.params;
     const blog = await Blog.findById(postid);
-          await cloudinary.uploader.destroy(blog.avata[0].filename);
+    await cloudinary.uploader.destroy(blog.avata[0].filename);
 
     await Topic.findByIdAndUpdate(topicid, { $pull: { blogs: postid } });
     await Blog.findByIdAndDelete(postid);
