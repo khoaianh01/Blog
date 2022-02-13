@@ -24,23 +24,25 @@ module.exports.postAddPost = async (req,res)=>{
     const blog = new Blog(req.body);
      blog.avata = {
         url:req.file.path,
-        filename:req.files
+        filename:req.file.filename
    }
+   
      blog.blogTopic=req.body.topic.title;
      await blog.save();
      topics.blogs.push(blog);
      topics.save();
-   const users = await User.find({role:'user'});
+   const users = await User.find({roles:'user'});
    let toEmails = [];
    users.forEach((user) => {
      
        toEmails.push(user.email);
    })
+   console.log(users)
    let fromEmail = emailAdmin;
    let text = `CoreIt có viết mới :localhost:3001/home/`;
    let contentHtml = '<p>' + `${text}` + '</p>';
    for(let i=0;i<toEmails.length;i++) {
-   await sendMails.sendMail(usernames='',fromEmail,text,toEmails[0],contentHtml);
+   await sendMails.sendMail(usernames='',fromEmail,text,toEmails[i],contentHtml);
    }
       res.redirect(`/admin/blog`);
  }
@@ -92,9 +94,9 @@ module.exports.postEditPost = async (req,res)=>{
 }
 module.exports.deletePost = async (req,res)=>{
     const {topicid,postid} = req.params;
-    await Blog.findById(postid).exec( async function  (err, blog){
+    const blog = await Blog.findById(postid);
           await cloudinary.uploader.destroy(blog.avata[0].filename);
-    })
+
     await Topic.findByIdAndUpdate(topicid, { $pull: { blogs: postid } });
     await Blog.findByIdAndDelete(postid);
     res.redirect('/admin/edit');
