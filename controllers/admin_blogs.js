@@ -42,7 +42,7 @@ module.exports.postAddPost = async (req,res)=>{
    for(let i=0;i<toEmails.length;i++) {
    await sendMails.sendMail(usernames='',fromEmail,text,toEmails[0],contentHtml);
    }
-      res.redirect(`/home/${blog._id}`);
+      res.redirect(`/admin/blog`);
  }
 module.exports.renderTopic =  (req,res)=>{
     res.render('admins/addtopic');
