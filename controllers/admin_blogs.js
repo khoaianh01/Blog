@@ -17,7 +17,7 @@ module.exports.renderAddPost =async (req,res)=>{
     const topics = await Topic.find({});
     res.render('admins/addpost',{topics});
 }
-module.exports.postAddPost = async (req,res)=>{ 
+module.exports.createPost = async (req,res)=>{ 
    const topicTitle = req.body.topic;
 // object[ null properties] xm lai bang console.log(req.body)
     const topics = await Topic.findOne({... req.body.topic});
@@ -49,7 +49,7 @@ module.exports.postAddPost = async (req,res)=>{
 module.exports.renderTopic =  (req,res)=>{
     res.render('admins/addtopic');
 }
-module.exports.postTopic = async (req,res)=>{
+module.exports.createTopic = async (req,res)=>{
     const topic = new Topic({...req.body});
     await topic.save();
     res.redirect('/admin/addtopic');
@@ -61,7 +61,7 @@ module.exports.renderEditPost = async (req,res)=>{
     
         res.render('admins/editpost',{blog,topics,topicid});
 }
-module.exports.postEditPost = async (req,res)=>{
+module.exports.updatePost = async (req,res)=>{
     const {postid} = req.params;
     const id = req.params.postid;
     const topicid = req.params.topicid;
@@ -106,7 +106,7 @@ module.exports.renderEditTopic = async (req, res)=>{
     const topic = await Topic.findById(id);
     res.render('admins/edittopic',{topic});
 }
-module.exports.editTopic = async (req,res)=>{
+module.exports.updateTopic = async (req,res)=>{
     const {id} = req.params;
     const title = req.body.title;
     const topicId = await Topic.findById(id).populate('blogs');

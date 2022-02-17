@@ -3,7 +3,7 @@
     
 
 
-<form action="/admin/edit/editpost/<%=topicid%>/post/<%=blog._id%>" method="POST" enctype="multipart/form-data">
+<form action="/admin/edit/editpost/<%=topicid%>/post/<%=blog._id%>?_method=PUT" method="POST" enctype="multipart/form-data">
     <input type="text" name="title" placeholder="tiêu đề bài viết" style="width:400px;height:100px" value="<%= blog.title %>">
     <br/>
     <textarea name="des" id="des" rows="10" cols="80"><%= blog.des %></textarea><br>

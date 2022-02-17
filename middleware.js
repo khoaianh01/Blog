@@ -5,7 +5,7 @@ const ExpressError = require('./utils/ExpressError');
 
 module.exports.isLoggedIn = (req, res, next) => {
     if (!req.isAuthenticated()) {
-        req.session.returnTo = req.originalUrl
+        // req.session.returnTo = req.originalUrl
        
         return res.redirect('/login');
     }
@@ -17,13 +17,16 @@ module.exports.isAdmin = async (req, res, next) =>{
     if(role==='admin'){
       next();
     }
+    else{
+        res.redirect('/home');
+    }
    
 }
 module.exports.validateUser= (req, res, next) => {
     const { error } = userSchema.validate(req.body);
     if (error) {
-        const msg = error.details.map(el => el.message).join(',')
-        throw new ExpressError(400,msg)
+        const msg = error.details.map(el => el.message).join(',');
+       throw new ExpressError(400,msg);
     } else {
         next();
     }
@@ -31,8 +34,8 @@ module.exports.validateUser= (req, res, next) => {
 module.exports.validateCommentUser= (req, res, next) => {
     const { error } = userCommentSchema.validate(req.body);
     if (error) {
-        const msg = error.details.map(el => el.message).join(',')
-        throw new ExpressError(400,msg)
+        const msg = error.details.map(el => el.message).join(',');
+         throw new ExpressError(400,msg);
     } else {
         next();
     }

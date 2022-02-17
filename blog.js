@@ -44,7 +44,7 @@ var MongoDBStore = require('connect-mongodb-session')(session);
 
 const clientID = process.env.CLIENT_ID ;
 const clientSecret =  process.env.CLIENT_SECRET;
-const callbackURL =  process.env.callbackURL || 'http://localhost:3000/admin/auth/google/callback';
+const callbackURL =  process.env.callbackURL || 'http://localhost:3001/admin/auth/google/callback';
 
 const dbUrl =  process.env.DB_URL;
 const secret = process.env.SECRET;
@@ -78,15 +78,19 @@ app.use(
 const store = new MongoDBStore({
     uri: dbUrl,
     secret,
-    touchAfter: 24 * 60 * 60
+    touchAfter: 60*60*24
 });
 
 app.use(session({
     secret,
     resave: false,
-  store:store,
+    store:store,
+  
     saveUninitialized: true,
-    // cookie: { secure: true }
+    // cookie:{
+    //     maxAge:6*1000,
+    // }
+    // cookie: { secure: true,http-only:true }
 }));
 // app.use(helmet());
 app.use(passport.initialize());
@@ -127,7 +131,8 @@ function (token, refreshToken, profile, done) {
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 app.use((req, res, next) => { 
-    
+    console.log(req)
+    console.log(req.sessionID)
     next();
 })
 
@@ -149,9 +154,7 @@ app.use((err, req, res, next) => {
     if (!err.message) {
         err.message = 'Oh No, Something Went Wrong!';
     }
-    else {
-        err.message = 'trang chủ đang có vấn đề bạn hãy đọc bài viết khác';
-    }
+  
     res.status(statusCode).render('error', {err});
 })
 const port = process.env.PORT || '3001';

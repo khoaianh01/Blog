@@ -58,7 +58,7 @@ module.exports.sendMail = async function (username,fromEmail,text,toEmail,conten
 
         }
         catch(err){
-            console.log(err);
+        
            return 'fail';
         }
    
