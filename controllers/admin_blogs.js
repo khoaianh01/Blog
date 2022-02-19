@@ -19,22 +19,20 @@ module.exports.renderAddPost =async (req,res)=>{
 }
 module.exports.createPost = async (req,res)=>{ 
    const topicTitle = req.body.topic;
-// object[ null properties] xm lai bang console.log(req.body)
-    const topics = await Topic.findOne({... req.body.topic});
-    const blog = new Blog(req.body);
-     blog.avata = {
+   const topics = await Topic.findOne({... req.body.topic});
+   const blog = new Blog(req.body);
+   blog.avata = {
         url:req.file.path,
         filename:req.file.filename
    }
    
-     blog.blogTopic=req.body.topic.title;
-     await blog.save();
-     topics.blogs.push(blog);
-     topics.save();
+   blog.blogTopic=req.body.topic.title;
+   await blog.save();
+   topics.blogs.push(blog);
+   topics.save();
    const users = await User.find({roles:'user'});
    let toEmails = [];
    users.forEach((user) => {
-     
        toEmails.push(user.email);
    })
    
@@ -58,14 +56,12 @@ module.exports.renderEditPost = async (req,res)=>{
     const {topicid,postid} = req.params;
     const blog = await Blog.findById(postid);
     const topics = await Topic.find({});
-    
-        res.render('admins/editpost',{blog,topics,topicid});
+    res.render('admins/editpost',{blog,topics,topicid});
 }
 module.exports.updatePost = async (req,res)=>{
     const {postid} = req.params;
     const id = req.params.postid;
     const topicid = req.params.topicid;
-    // object[ null properties] xm lai bang console.log(req.body)
     const topic = await Topic.findOne({... req.body.topic});
     const topicId = await Topic.findById(topicid).populate('blogs');
     
@@ -75,20 +71,17 @@ module.exports.updatePost = async (req,res)=>{
        filename: req.file.filename 
     };
     blog.blogTopic = req.body.topic.title;
-     await blog.save();
-     console.log(blog.blogTopic);
-     console.log(topicId.title);
-     if(blog.blogTopic !== topicId.title){
-            topic.blogs.push(blog);
-            // await Topic.findOneAndUpdate({... req.body.topic},{blogs:postid});
-            await Topic.findByIdAndUpdate(topicid, { $pull: { blogs: postid } });
+    await blog.save();
+    console.log(blog.blogTopic);
+    console.log(topicId.title);
+    if(blog.blogTopic !== topicId.title){
+        topic.blogs.push(blog);
+        await Topic.findByIdAndUpdate(topicid, { $pull: { blogs: postid } });
      }
- 
-
     await topic.save();
     const topicId1 = await Topic.findById(topicid).populate({path:'blogs',
-  match:{_id:"61b80d82de28e930b85c7089"}
-});
+     match:{_id:"61b80d82de28e930b85c7089"}
+    });
     console.log(topicId1);
      res.redirect('/admin/edit');
 }
@@ -116,9 +109,9 @@ module.exports.updateTopic = async (req,res)=>{
     res.redirect('/admin/edit');
 }
 module.exports.uploadImgContent = async (req,res) =>{ 
-                    let fileName = req.files.upload.name;
-                   cloudinary.uploader.upload(req.files.upload.path,{folder:'blog'})
-                    .then(data =>{
+    let fileName = req.files.upload.name;
+    cloudinary.uploader.upload(req.files.upload.path,{folder:'blog'})
+            .then(data =>{
                         let url = data.url;                    
                         let msg = 'Upload successfully';
                         let funcNum = req.query.CKEditorFuncNum;            
