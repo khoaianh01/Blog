@@ -32,15 +32,14 @@ const sendMail = require("./routes/sendMail.js");
 const authGoogle = require("./routes/auth_google");
 const ExpressError = require("./utils/ExpressError");
 
-const multipart = require("connect-multiparty");
-const multipartMiddleware = multipart();
+
 const fs = require("fs");
 var MongoDBStore = require("connect-mongodb-session")(session);
 
 const clientID = process.env.CLIENT_ID;
 const clientSecret = process.env.CLIENT_SECRET;
 const callbackURL =
-  process.env.callbackURL || "http://localhost:3001/admin/auth/google/callback";
+'https://core-it-123.herokuapp.com/admin/auth/google/callback '||process.env.callbackURL || "http://localhost:3002/admin/auth/google/callback";
 
 const dbUrl = process.env.DB_URL;
 const secret = process.env.SECRET;
@@ -83,9 +82,7 @@ app.use(
     store: store,
 
     saveUninitialized: true,
-    // cookie:{
-    //     maxAge:6*1000,
-    // }
+  
     // cookie: { secure: true,http-only:true }
   })
 );
@@ -116,7 +113,7 @@ passport.use(
               if (err) {
                 throw err;
               }
-
+         
               return done(null, newUser);
             });
           }
@@ -128,7 +125,7 @@ passport.use(
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 app.use((req, res, next) => {
-
+   console.log(req)
   next();
 });
 
@@ -149,7 +146,8 @@ app.use((err, req, res, next) => {
 
   res.status(statusCode).render("error", { err });
 });
+
 const port = process.env.PORT || "3001";
-app.listen(port, (req, res) => {
+app.listen('3002', (req, res) => {
   console.log(`da ket noi ${port}`);
 });

@@ -78,8 +78,7 @@ module.exports.updatePost = async (req, res) => {
   };
   blog.blogTopic = req.body.topic.title;
   await blog.save();
-  console.log(blog.blogTopic);
-  console.log(topicId.title);
+
   if (blog.blogTopic !== topicId.title) {
     topic.blogs.push(blog);
     await Topic.findByIdAndUpdate(topicid, { $pull: { blogs: postid } });
