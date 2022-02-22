@@ -39,7 +39,7 @@ var MongoDBStore = require("connect-mongodb-session")(session);
 const clientID = process.env.CLIENT_ID;
 const clientSecret = process.env.CLIENT_SECRET;
 const callbackURL =process.env.callbackURL || "http://localhost:3002/admin/auth/google/callback";
-
+// const callbackURL = "http://localhost:3002/admin/auth/google/callback";
 const dbUrl = process.env.DB_URL;
 const secret = process.env.SECRET;
 const parser = multer({ storage: storage });
@@ -98,6 +98,7 @@ passport.use(
     },
     function (token, refreshToken, profile, done) {
       process.nextTick(function () {
+        console.log()
         // // tìm trong db xem có user nào đã sử dụng google id này chưa
         User.findOne({ googleId: profile.id }, function (err, user) {
           if (err) return done(err);
@@ -108,6 +109,7 @@ passport.use(
             // if the user isnt in our database, create a new user
             var newUser = new User();
             newUser.email = profile.emails[0].value; // pull the first email
+            newUser.googleId = profile.id;
             newUser.save(function (err) {
               if (err) {
                 throw err;
@@ -132,7 +134,7 @@ app.use("/home", homeRoutes);
 app.use("/admin", userRoutes);
 app.use("/admin", adminRoutes);
 app.use("/send", sendMail);
-app.use("/auth", authGoogle);
+// app.use("/auth", authGoogle);
 
 app.all("*", (req, res, next) => {
   next(new ExpressError(404, "Page Not Found"));
@@ -147,6 +149,6 @@ app.use((err, req, res, next) => {
 });
 
 const port = process.env.PORT || "3001";
-app.listen(port, (req, res) => {
+app.listen('3002', (req, res) => {
   console.log(`da ket noi ${port}`);
 });

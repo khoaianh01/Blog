@@ -1,6 +1,6 @@
 const passport = require("passport");
 module.exports.auth = (err, req, res, next) => {
-  passport.authenticate("google", { scope: "email" }),
+  passport.authenticate("google",  { scope: ['profile', 'email']}),
     (err, req, res, next) => {
       if (err) {
         next(

@@ -10,14 +10,13 @@ router
     passport.authenticate("local", { failureRedirect: "/admin/login" }),
     users.postLogin
   );
-router.route("/register").get(users.renderRegister).post(users.postRegister);
-router
-  .route("/auth/google")
-  .get(passport.authenticate("google", { scope: "email" }));
-router
-  .route("/auth/google/callback")
-  .get(
-    passport.authenticate("google", { failureRedirect: "admin/login" }),
-    users.postLogin
-  );
+router.route("/register")
+.get(users.renderRegister)
+.post(users.postRegister);
+router.route('/auth/google')
+      .get(passport.authenticate('google',{
+        scope: ['profile', 'email']
+      }));
+router.route('/auth/google/callback')
+      .get(passport.authenticate('google', { failureRedirect: 'admin/login' }),users.postLogin)
 module.exports = router;
