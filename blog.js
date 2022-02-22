@@ -29,7 +29,7 @@ const User = require("./models/users");
 const userRoutes = require("./routes/users.js");
 const adminRoutes = require("./routes/admin_blogs.js");
 const sendMail = require("./routes/sendMail.js");
-const authGoogle = require("./routes/auth_google");
+
 const ExpressError = require("./utils/ExpressError");
 
 
@@ -134,7 +134,7 @@ app.use("/home", homeRoutes);
 app.use("/admin", userRoutes);
 app.use("/admin", adminRoutes);
 app.use("/send", sendMail);
-// app.use("/auth", authGoogle);
+
 
 app.all("*", (req, res, next) => {
   next(new ExpressError(404, "Page Not Found"));
