@@ -38,8 +38,7 @@ var MongoDBStore = require("connect-mongodb-session")(session);
 
 const clientID = process.env.CLIENT_ID;
 const clientSecret = process.env.CLIENT_SECRET;
-const callbackURL =
-'https://core-it-123.herokuapp.com/admin/auth/google/callback '||process.env.callbackURL || "http://localhost:3002/admin/auth/google/callback";
+const callbackURL =process.env.callbackURL || "http://localhost:3002/admin/auth/google/callback";
 
 const dbUrl = process.env.DB_URL;
 const secret = process.env.SECRET;
@@ -148,6 +147,6 @@ app.use((err, req, res, next) => {
 });
 
 const port = process.env.PORT || "3001";
-app.listen('3002', (req, res) => {
+app.listen(port, (req, res) => {
   console.log(`da ket noi ${port}`);
 });
