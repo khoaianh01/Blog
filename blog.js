@@ -24,7 +24,7 @@ const nodemailer = require("nodemailer");
 
 const homeRoutes = require("./routes/blogs.js");
 const Blog = require("./models/blogs.js");
-const Topic = require("./models/topics.js");
+const Topic = require("./models/topics");
 const User = require("./models/users");
 const userRoutes = require("./routes/users.js");
 const adminRoutes = require("./routes/admin_blogs.js");
@@ -126,7 +126,7 @@ passport.use(
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 app.use((req, res, next) => {
-   console.log(req)
+  //  console.log(req)
   next();
 });
 
@@ -149,6 +149,6 @@ app.use((err, req, res, next) => {
 });
 
 const port = process.env.PORT || "3001";
-app.listen(port, (req, res) => {
+app.listen('3001', (req, res) => {
   console.log(`da ket noi ${port}`);
 });

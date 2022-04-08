@@ -29,5 +29,5 @@ module.exports.userSchema = Joi.object({
 module.exports.userCommentSchema = Joi.object({
   comment: Joi.string().required().escapeHTML(),
   username: Joi.string().required().escapeHTML(),
-  email: Joi.string().required().email().escapeHTML(),
+  email: Joi.string().required().email().escapeHTML()
 });

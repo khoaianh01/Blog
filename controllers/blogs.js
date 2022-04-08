@@ -7,10 +7,7 @@ module.exports.renderPost = async (req, res) => {
   let next = req.query.next;
   let idPage = req.query.page || 0;
   let countBlog = await Blog.find({}).count();
-  let countBlogss = await Blog.find({});
-
   let countPage = Math.floor((countBlog - 1) / PAGE_SIZE);
-
   if (!next) {
     var blogs = await Blog.find({}).sort({ _id: -1 }).limit(PAGE_SIZE);
   } else {

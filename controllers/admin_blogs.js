@@ -48,7 +48,7 @@ module.exports.createPost = async (req, res) => {
       contentHtml
     );
   }
-  res.redirect(`/admin/blog`);
+  res.redirect(`/admin/addblog`);
 };
 module.exports.renderTopic = (req, res) => {
   res.render("admins/addtopic");
