@@ -1,5 +1,5 @@
 ```sh
- cd blog
+ cd Blog
  npm install -d nodemon
 ```
 xem blog:  http://localhost:3001/home hoặc  https://core-it-123.herokuapp.com/home
