@@ -149,6 +149,7 @@ app.use((err, req, res, next) => {
 });
 
 const port = process.env.PORT || "3001";
-app.listen('3001', (req, res) => {
+app.listen(port, (req, res) => {
   console.log(`da ket noi ${port}`);
 });
+//
