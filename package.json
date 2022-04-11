@@ -55,12 +55,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/khoaianh01/abcd.git"
+    "url": "git+https://github.com/khoaianh01/blog-mongodb.git"
   },
   "bugs": {
-    "url": "https://github.com/khoaianh01/abcd/issues"
+    "url": "https://github.com/khoaianh01/blog-mongodb/issues"
   },
-  "homepage": "https://github.com/khoaianh01/abcd#readme",
+  "homepage": "https://github.com/khoaianh01/blog-mongodb#readme",
   "devDependencies": {},
   "description": ""
 }
